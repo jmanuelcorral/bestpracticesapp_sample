@@ -1,0 +1,22 @@
+{
+  "name": "bestpracticesapp_sample",
+  "version": "1.0.0",
+  "description": "Node.JS Application Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": "",
+  "author": "jmanuelcorral",
+  "license": "BSD",
+  "dependencies": {
+    "express": "~3.4.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-jasmine": "~0.5.2"
+  }
+}
