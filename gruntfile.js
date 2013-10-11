@@ -22,20 +22,44 @@ module.exports = function(grunt) {
         }
       }
     },
-    
-    jasmine: {
-      build: {
-        src: srcFiles,
-        options: {
-          specs: specFiles
+    mocha: {
+      all: [srcFiles],
+      test: {
+          // Test files
+          src: [specFiles],
+          options: {
+            // Bail means if a test fails, grunt will abort. False by default.
+            bail: false,
+
+            // Pipe output console.log from your JS to grunt. False by default.
+            log: true,
+
+            // mocha options
+            mocha: {
+              ignoreLeaks: false,
+              grep: 'food'
+            },
+
+            // Select a Mocha reporter
+            // http://visionmedia.github.com/mocha/#reporters
+            reporter: 'Nyan',
+
+            // Indicates whether 'mocha.run()' should be executed in
+            // 'bridge.js'. If you include `mocha.run()` in your html spec,
+            // check if environment is PhantomJS. See example/test/test2.html
+            run: true,
+
+            // Override the timeout of the test (default is 5000)
+            timeout: 8000
+          }
         }
-      }
-    },
+    }
+    ,
     
     watch: {
       build: {
         files: [srcFiles, specFiles],
-        tasks: ['jshint', 'jasmine', 'uglify']
+        tasks: ['jshint', 'mocha', 'uglify']
       }
     },
 
@@ -44,8 +68,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-mocha-phantomjs');
  
   grunt.registerTask('default', ['watch']);
-  grunt.registerTask('build', ['jshint', 'jasmine', 'uglify']);
+  grunt.registerTask('build', ['jshint', 'mocha', 'uglify']);
 };
